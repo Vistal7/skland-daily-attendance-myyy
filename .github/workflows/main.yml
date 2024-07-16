@@ -1,0 +1,22 @@
+on: 
+  push:
+    branches: 
+      - master
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+  
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout blog code 
+      uses: actions/checkout@v3
+        
+      env:
+        USER_NAME: your name # optional
+        EMAIL: your email # optional
+        PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        PUBLISH_REPOSITORY: your.github.io # The repository the action should deploy to.
+        BRANCH: master  # The branch the action should deploy to.
+        PUBLISH_DIR: ./public # The folder the action should deploy.
